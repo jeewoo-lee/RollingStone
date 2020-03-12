@@ -29,7 +29,7 @@ class RollingStone {
     
     //create the deck
     var deck : Deck
-    
+    var actualDeck: [Card] = []
     //creating the 6 users
     var player1 : Hand
     var player2 : Hand
@@ -45,7 +45,6 @@ class RollingStone {
     let minPlayernumber = 4
     let maxPlayernumber = 6
     init(){
-        
         player1 = Hand(description: "none")
         player2 = Hand(description: "none")
         player3 = Hand(description: "none")
@@ -55,8 +54,8 @@ class RollingStone {
         
         middle = Hand(description: "middle")
         deck = Deck()
-        var possibleNumber = 0
         
+        var possibleNumber = 0
         while true{
             print("Please Enter the number of player you want to play with")
             guard let numberInput = readLine(), let playerCount = Int(numberInput) else {
@@ -74,7 +73,15 @@ class RollingStone {
             player4 = Hand(description: readLine()!)
             player5 = Hand(description: "none")
             player6 = Hand(description: "none")
-
+            
+            //remove 2-6 from deck
+               for i in 0...deck.cards.count - 1 {
+                   let theRank = deck.cards[i].rank.rawValue
+                   if theRank != 2 && theRank != 3 && theRank != 4 && theRank != 5 && theRank != 6 {
+                      
+                       actualDeck.append(deck.cards[i])
+                   }
+            }
         }
             
         else if possibleNumber == 5 {
@@ -85,9 +92,17 @@ class RollingStone {
             player4 = Hand(description: readLine()!)
             player5 = Hand(description: readLine()!)
             player6 = Hand(description: "none")
-
-         }
             
+            
+            //add cards from 2-5 from deck
+            for i in 0...deck.cards.count - 1 {
+                let theRank = deck.cards[i].rank.rawValue
+                if theRank != 2 && theRank != 3 && theRank != 4 && theRank != 5 {
+                   
+                    actualDeck.append(deck.cards[i])
+                }
+         }
+        }
         else if possibleNumber == 6 {
             print("Please Enter the name of six players you want to play with")
             player1 = Hand(description: readLine()!)
@@ -96,17 +111,21 @@ class RollingStone {
             player4 = Hand(description: readLine()!)
             player5 = Hand(description: readLine()!)
             player6 = Hand(description: readLine()!)
-
+            
+            //remove 2-4 form deck
+               for i in 0...deck.cards.count - 1 {
+                   let theRank = deck.cards[i].rank.rawValue
+                   if theRank != 2 && theRank != 3 && theRank != 4 {
+                      
+                       actualDeck.append(deck.cards[i])
+                   }
+            }
         }
-            
         else{
-            
         print("restart and type number between 4-6")
-            
         }
     }
     
 
 }
-
 RollingStone()
