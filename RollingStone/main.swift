@@ -97,7 +97,7 @@ class RollingStone {
             //add cards from 2-5 from deck
             for i in 0...deck.cards.count - 1 {
                 let theRank = deck.cards[i].rank.rawValue
-                if theRank != 2 && theRank != 3 && theRank != 4 && theRank != 5 {
+                if theRank != 2 && theRank != 3 && theRank != 4 {
                    
                     actualDeck.append(deck.cards[i])
                 }
@@ -115,7 +115,7 @@ class RollingStone {
             //remove 2-4 form deck
                for i in 0...deck.cards.count - 1 {
                    let theRank = deck.cards[i].rank.rawValue
-                   if theRank != 2 && theRank != 3 && theRank != 4 {
+                   if theRank != 2 {
                       
                        actualDeck.append(deck.cards[i])
                    }
