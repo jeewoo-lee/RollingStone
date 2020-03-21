@@ -29,7 +29,7 @@ class RollingStone {
     
     //create the deck
     var deck : Deck
-    var actualDeck: [Card] = []
+    var actualDeck: Deck
     //creating the 6 users
     var player1 : Hand
     var player2 : Hand
@@ -54,10 +54,12 @@ class RollingStone {
         
         middle = Hand(description: "middle")
         deck = Deck()
+        actualDeck = Deck()
+        actualDeck.reset()
         
         var possibleNumber = 0
         while true{
-            print("Please Enter the number of player you want to play with")
+            print("Please Enter a number between 4-6 of the players you want to play with")
             guard let numberInput = readLine(), let playerCount = Int(numberInput) else {
                 continue
             }
@@ -79,8 +81,20 @@ class RollingStone {
                    let theRank = deck.cards[i].rank.rawValue
                    if theRank != 2 && theRank != 3 && theRank != 4 && theRank != 5 && theRank != 6 {
                       
-                       actualDeck.append(deck.cards[i])
-                   }
+                    actualDeck.cards.append(deck.cards[i])
+                }
+            }
+            if let newCards = self.deck.randomlyDealOut(thisManyCards: 8) {
+                player1.cards = newCards
+            }
+            if let newCards = self.deck.randomlyDealOut(thisManyCards: 8) {
+                player2.cards = newCards
+            }
+            if let newCards = self.deck.randomlyDealOut(thisManyCards: 8) {
+                player3.cards = newCards
+            }
+            if let newCards = self.deck.randomlyDealOut(thisManyCards: 8) {
+                player4.cards = newCards
             }
         }
             
@@ -99,9 +113,24 @@ class RollingStone {
                 let theRank = deck.cards[i].rank.rawValue
                 if theRank != 2 && theRank != 3 && theRank != 4 {
                    
-                    actualDeck.append(deck.cards[i])
+                    actualDeck.cards.append(deck.cards[i])
                 }
-         }
+            }
+            if let newCards = self.deck.randomlyDealOut(thisManyCards: 8) {
+                player1.cards = newCards
+            }
+            if let newCards = self.deck.randomlyDealOut(thisManyCards: 8) {
+                player2.cards = newCards
+            }
+            if let newCards = self.deck.randomlyDealOut(thisManyCards: 8) {
+                player3.cards = newCards
+            }
+            if let newCards = self.deck.randomlyDealOut(thisManyCards: 8) {
+                player4.cards = newCards
+            }
+            if let newCards = self.deck.randomlyDealOut(thisManyCards: 8) {
+                player5.cards = newCards
+            }
         }
         else if possibleNumber == 6 {
             print("Please Enter the name of six players you want to play with")
@@ -117,15 +146,31 @@ class RollingStone {
                    let theRank = deck.cards[i].rank.rawValue
                    if theRank != 2 {
                       
-                       actualDeck.append(deck.cards[i])
+                    actualDeck.cards.append(deck.cards[i])
                    }
             }
-        }
-        else{
+            if let newCards = self.deck.randomlyDealOut(thisManyCards: 8) {
+                player1.cards = newCards
+            }
+            if let newCards = self.deck.randomlyDealOut(thisManyCards: 8) {
+                player2.cards = newCards
+            }
+            if let newCards = self.deck.randomlyDealOut(thisManyCards: 8) {
+                player3.cards = newCards
+            }
+            if let newCards = self.deck.randomlyDealOut(thisManyCards: 8) {
+                player4.cards = newCards
+            }
+            if let newCards = self.deck.randomlyDealOut(thisManyCards: 8) {
+                player5.cards = newCards
+            }
+            if let newCards = self.deck.randomlyDealOut(thisManyCards: 8) {
+                player6.cards = newCards
+            }
+     
+        }else{
         print("restart and type number between 4-6")
         }
     }
-    
-
 }
 RollingStone()

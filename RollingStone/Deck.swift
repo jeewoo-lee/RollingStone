@@ -54,50 +54,54 @@ struct Deck {
         }
     }
     
-    // Randomly deals out the specified number of cards
-    mutating func randomlyDealOut(thisManyCards cardsToDeal : Int) -> [Card]? {
-        
-        // Track cards left to deal
-        var cardsLeftToDeal = cardsToDeal
-        
-        // Make an array that will be passed back out of the function
-        var cardsDealt : [Card] = []
-        
-        // "Shuffle" the deck and return requested count of cards
-        while cardsLeftToDeal > 0 && self.cards.count > 0 {
+        // Randomly deals out the specified number of cards
+        mutating func randomlyDealOut(thisManyCards cardsToDeal : Int) -> [Card]? {
             
-            // Generate a random number between 0 and the count of cards still left in the deck
-            let position = Int.random(in: 0...self.cards.count - 1)
+            // Track cards left to deal
+            var cardsLeftToDeal = cardsToDeal
             
-            // Copy the card at this position in the deck to the cards being returned
-            cardsDealt.append(self.cards[position])
+            // Make an array that will be passed back out of the function
+            var cardsDealt : [Card] = []
             
-            // Remove the card from the deck for this position
-            self.cards.remove(at: position)
+            // "Shuffle" the deck and return requested count of cards
+            while cardsLeftToDeal > 0 && self.cards.count > 0 {
+                
+                // Generate a random number between 0 and the count of cards still left in the deck
+                let position = Int.random(in: 0...self.cards.count - 1)
+                
+                // Copy the card at this position in the deck to the cards being returned
+                cardsDealt.append(self.cards[position])
+                
+                // Remove the card from the deck for this position
+                self.cards.remove(at: position)
+                
+                // We've dealt a card
+                cardsLeftToDeal -= 1
+                
+            }
             
-            // We've dealt a card
-            cardsLeftToDeal -= 1
+            // Check that we could deal the requested number of cards, otherwise return nil
+            if cardsDealt.count < cardsToDeal {
+                
+                // Return dealt cards to deck
+                self.cards.append(contentsOf: cardsDealt)
+                
+                // Clear cards dealt
+                cardsDealt = []
+                
+                // Return nothing, since we couldn't deal the requested number of cards
+                return nil
+                
+            } else {
+                
+                // We successfully dealt the right number of cards
+                return cardsDealt
+            }
             
         }
-        
-        // Check that we could deal the requested number of cards, otherwise return nil
-        if cardsDealt.count < cardsToDeal {
-            
-            // Return dealt cards to deck
-            self.cards.append(contentsOf: cardsDealt)
-            
-            // Clear cards dealt
-            cardsDealt = []
-            
-            // Return nothing, since we couldn't deal the requested number of cards
-            return nil
-            
-        } else {
-            
-            // We successfully dealt the right number of cards
-            return cardsDealt
-        }
-        
+    mutating func reset() {
+        self.cards.removeAll()
     }
-    
 }
+
+
