@@ -84,16 +84,16 @@ class RollingStone {
                     actualDeck.cards.append(deck.cards[i])
                 }
             }
-            if let newCards = self.deck.randomlyDealOut(thisManyCards: 8) {
+            if let newCards = self.actualDeck.randomlyDealOut(thisManyCards: 8) {
                 player1.cards = newCards
             }
-            if let newCards = self.deck.randomlyDealOut(thisManyCards: 8) {
+            if let newCards = self.actualDeck.randomlyDealOut(thisManyCards: 8) {
                 player2.cards = newCards
             }
-            if let newCards = self.deck.randomlyDealOut(thisManyCards: 8) {
+            if let newCards = self.actualDeck.randomlyDealOut(thisManyCards: 8) {
                 player3.cards = newCards
             }
-            if let newCards = self.deck.randomlyDealOut(thisManyCards: 8) {
+            if let newCards = self.actualDeck.randomlyDealOut(thisManyCards: 8) {
                 player4.cards = newCards
             }
         }
@@ -116,19 +116,19 @@ class RollingStone {
                     actualDeck.cards.append(deck.cards[i])
                 }
             }
-            if let newCards = self.deck.randomlyDealOut(thisManyCards: 8) {
+            if let newCards = self.actualDeck.randomlyDealOut(thisManyCards: 8) {
                 player1.cards = newCards
             }
-            if let newCards = self.deck.randomlyDealOut(thisManyCards: 8) {
+            if let newCards = self.actualDeck.randomlyDealOut(thisManyCards: 8) {
                 player2.cards = newCards
             }
-            if let newCards = self.deck.randomlyDealOut(thisManyCards: 8) {
+            if let newCards = self.actualDeck.randomlyDealOut(thisManyCards: 8) {
                 player3.cards = newCards
             }
-            if let newCards = self.deck.randomlyDealOut(thisManyCards: 8) {
+            if let newCards = self.actualDeck.randomlyDealOut(thisManyCards: 8) {
                 player4.cards = newCards
             }
-            if let newCards = self.deck.randomlyDealOut(thisManyCards: 8) {
+            if let newCards = self.actualDeck.randomlyDealOut(thisManyCards: 8) {
                 player5.cards = newCards
             }
         }
@@ -149,22 +149,22 @@ class RollingStone {
                     actualDeck.cards.append(deck.cards[i])
                    }
             }
-            if let newCards = self.deck.randomlyDealOut(thisManyCards: 8) {
+            if let newCards = self.actualDeck.randomlyDealOut(thisManyCards: 8) {
                 player1.cards = newCards
             }
-            if let newCards = self.deck.randomlyDealOut(thisManyCards: 8) {
+            if let newCards = self.actualDeck.randomlyDealOut(thisManyCards: 8) {
                 player2.cards = newCards
             }
-            if let newCards = self.deck.randomlyDealOut(thisManyCards: 8) {
+            if let newCards = self.actualDeck.randomlyDealOut(thisManyCards: 8) {
                 player3.cards = newCards
             }
-            if let newCards = self.deck.randomlyDealOut(thisManyCards: 8) {
+            if let newCards = self.actualDeck.randomlyDealOut(thisManyCards: 8) {
                 player4.cards = newCards
             }
-            if let newCards = self.deck.randomlyDealOut(thisManyCards: 8) {
+            if let newCards = self.actualDeck.randomlyDealOut(thisManyCards: 8) {
                 player5.cards = newCards
             }
-            if let newCards = self.deck.randomlyDealOut(thisManyCards: 8) {
+            if let newCards = self.actualDeck.randomlyDealOut(thisManyCards: 8) {
                 player6.cards = newCards
             }
      
@@ -172,5 +172,19 @@ class RollingStone {
         print("restart and type number between 4-6")
         }
     }
+    
+    func checkIfThereIsCardToPutDown(who thePlayer: Hand) {
+        let cardOnMiddle = middle.cards[0]
+        for i in 0...thePlayer.cards.count - 1 {
+            if thePlayer.cards[i].suit == cardOnMiddle.suit {
+                middle.cards.insert(thePlayer.cards[i], at: 0)
+                thePlayer.cards.remove(at: i)
+            } else {
+                thePlayer.cards.insert(contentsOf: middle.cards, at: 0)
+                middle.cards.removeAll()
+            }
+        }
+    }
 }
 RollingStone()
+
