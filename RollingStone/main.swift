@@ -30,6 +30,7 @@ class RollingStone {
     //create the deck
     var deck : Deck
     var actualDeck: Deck
+    
     //creating the 6 users
     var player1 : Hand
     var player2 : Hand
@@ -37,6 +38,9 @@ class RollingStone {
     var player4 : Hand
     var player5 : Hand
     var player6 : Hand
+    
+    //playerOfTheTurn
+    var playerOfTheTurn : Hand
 
     //adding the middle to add cards to
     var middle : Hand
@@ -142,12 +146,12 @@ class RollingStone {
             player6 = Hand(description: readLine()!)
             
             //remove 2-4 form deck
-               for i in 0...deck.cards.count - 1 {
-                   let theRank = deck.cards[i].rank.rawValue
-                   if theRank != 2 {
-                      
-                    actualDeck.cards.append(deck.cards[i])
-                   }
+           for i in 0...deck.cards.count - 1 {
+               let theRank = deck.cards[i].rank.rawValue
+               if theRank != 2 {
+                  
+                actualDeck.cards.append(deck.cards[i])
+               }
             }
             if let newCards = self.actualDeck.randomlyDealOut(thisManyCards: 8) {
                 player1.cards = newCards
@@ -171,6 +175,9 @@ class RollingStone {
         }else{
         print("restart and type number between 4-6")
         }
+        
+        //temporarily player1 starts the game.
+        playerOfTheTurn = player1
     }
     
     func checkIfThereIsCardToPutDown(who thePlayer: Hand) {
@@ -184,6 +191,19 @@ class RollingStone {
                 middle.cards.removeAll()
             }
         }
+    }
+    
+    func isGameOver() -> Bool {
+        if playerOfTheTurn.cards.count == 0 {
+            announceWinner()
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func announceWinner() {
+        print(playerOfTheTurn.description + " is the winner")
     }
 }
 RollingStone()
