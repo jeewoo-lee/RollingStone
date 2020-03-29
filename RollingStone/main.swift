@@ -363,13 +363,13 @@ class RollingStone {
     // What's in the pot? (Mr. Gordon's code)
     func describeCards(in hand: Hand) {
         
-        print("\n------ The player \(hand.description)  has \(hand.cards.count) card(s). They are...")
+        print("\n------- The player \(hand.description)  has \(hand.cards.count) card(s). They are...")
         
         for card in hand.cards {
             print(card.simpleDescription())
         }
         
-        print("------")
+        print("-------")
         
     }
     
