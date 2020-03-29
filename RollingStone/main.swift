@@ -29,6 +29,7 @@ extension Card {
 class RollingStone {
     var isGameOn = false
     var shouldStartNewRound = false
+    var round = 1
     //create the deck
     var deck : Deck
     var actualDeck: Deck
@@ -301,7 +302,9 @@ class RollingStone {
     
     
     func checkIfThereIsCardToPutDown(who thePlayer: Hand, who nextPlayer: Hand) {
+        rounds(rounds: round)
         if shouldStartNewRound == false {
+            
             let cardOnMiddle = middle.cards[0]
             print("middle: " + middle.cards[0].simpleDescription())
             for i in 0...thePlayer.cards.count - 1 {
@@ -312,6 +315,7 @@ class RollingStone {
                     thePlayer.cards.remove(at: i)
                     break
                 } else if i == thePlayer.cards.count - 1 {
+                    round += 1
                     thePlayer.cards.insert(contentsOf: middle.cards, at: 0)
                     middle.cards.removeAll()
                     findCard(thePlayer: nextPlayer, theCard: cardOnMiddle)
@@ -326,10 +330,11 @@ class RollingStone {
             checkWin(who: nextPlayer)
             if middle.cards.count > 0 {
                 print(middle.cards[0].simpleDescription())
+                shouldStartNewRound = false
             } else {
                 print("There is no card in the middle")
             }
-            shouldStartNewRound = false
+            
         }
         
         
@@ -363,14 +368,26 @@ class RollingStone {
     // What's in the pot? (Mr. Gordon's code)
     func describeCards(in hand: Hand) {
         
-        print("\n------- The player \(hand.description)  has \(hand.cards.count) card(s). They are...")
+        print("\n------- The player \(hand.description) has \(hand.cards.count) card(s). They are...")
         
         for card in hand.cards {
             print(card.simpleDescription())
         }
         
-        print("-------")
+        print("------------------------------------------------------------------------")
         
+    }
+    
+    func rounds(rounds: Int) {
+        if rounds == 1 {
+            print("It's 1st Round")
+        } else if rounds == 2 {
+            print("It's 2nd Round")
+        } else if rounds == 3 {
+            print("It's 3rd Round")
+        } else {
+            print("It's " + String(rounds) + "th Round")
+        }
     }
     
     
