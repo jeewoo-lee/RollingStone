@@ -324,7 +324,11 @@ class RollingStone {
             
         } else {
             checkWin(who: nextPlayer)
-            print(middle.cards[0].simpleDescription())
+            if middle.cards.count > 0 {
+                print(middle.cards[0].simpleDescription())
+            } else {
+                print("There is no card in the middle")
+            }
             shouldStartNewRound = false
         }
         
