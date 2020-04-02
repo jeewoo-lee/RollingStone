@@ -99,6 +99,7 @@ struct Deck {
             }
             
         }
+    //remove the cards from the array for making "actualDeck" in main.swift be empty before distributing needed cards for difference cases.
     mutating func reset() {
         self.cards.removeAll()
     }

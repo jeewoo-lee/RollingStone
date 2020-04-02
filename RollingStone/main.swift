@@ -27,20 +27,30 @@ extension Card {
 
 
 class RollingStone {
+    //determine if game is on
     var isGameOn = false
+    //variable needed for making "human readable game"
     var shouldStartNewRound = false
     var round = 1
+    var interactiveMode: Bool
+    
     //create the deck
     var deck : Deck
     var actualDeck: Deck
     
-    //creating the 6 users
+    //creating the 6 players of order
     var player1 : Hand
     var player2 : Hand
     var player3 : Hand
     var player4 : Hand
     var player5 : Hand
     var player6 : Hand
+    
+    //creating the 6 players of user input
+//    var firstP : Hand
+//    var secondP : Hand
+//    var thirdP : Hand
+//    var fourthP : Hand
     
     //keep tracking the turn
     var dealer : Hand
@@ -55,7 +65,12 @@ class RollingStone {
     //choosing the how many players should play
     let minPlayernumber = 4
     let maxPlayernumber = 6
-    init(){
+    init(interactiveMode: Bool = false){
+        //Mr. Gordon's code
+        // Wait for user input while playing?
+        self.interactiveMode = interactiveMode
+        
+        //Initialize players
         player1 = Hand(description: "none")
         player2 = Hand(description: "none")
         player3 = Hand(description: "none")
@@ -63,14 +78,20 @@ class RollingStone {
         player5 = Hand(description: "none")
         player6 = Hand(description: "none")
         
-        //players = [player1, player2, player3, player4, player5, player6]
-        
+        //difficulties related to this code, players = [player1, player2, player3, player4, player5, player6]: how to determine the order? I (Jeewoo) thought it would be good idea for making the players array that keep tracts of whose turn it is. For example, playerOfTurn: players[0], nextPlayerOfTurn: players[1]. I expected the values of array to point same memory location as other players since instances of classes are reference types. However, it turns out as those hands(players) are stored in array, it creates copy of those players that it does not point same memory location anymore. I assume it's because collections in swift are value types.
+
+        //initialize middle which is instance of Hand class
         middle = Hand(description: "middle")
+        //Initialize Deck
         deck = Deck()
+        //Initialize actual deck that will be used in actual game
         actualDeck = Deck()
+        //empty the array of actaulDeck because we want it to have no cards before user determine how many people they would like to play with.
         actualDeck.reset()
         
+        //set possibleNumber; number of players as 0 before user input
         var possibleNumber = 0
+        //get user input for possibleNumber of players.
         while true{
             print("Please Enter a number between 4-6 of the players you want to play with")
             guard let numberInput = readLine(), let playerCount = Int(numberInput) else {
@@ -302,6 +323,7 @@ class RollingStone {
     
     
     func checkIfThereIsCardToPutDown(who thePlayer: Hand, who nextPlayer: Hand) {
+        waitForUserInput()
         rounds(rounds: round)
         if shouldStartNewRound == false {
             
@@ -390,6 +412,19 @@ class RollingStone {
         }
     }
     
+    //Mr. Gordon's code
+    // Let the user see what's happening before carrying on
+    func waitForUserInput() {
+        
+        if interactiveMode {
+            print("Press ENTER to continue...", terminator: "")
+            readLine()
+        }
+        
+    }
+    
+    
+    
     
 }
-RollingStone()
+RollingStone(interactiveMode: true)
