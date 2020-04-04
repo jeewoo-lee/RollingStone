@@ -46,6 +46,13 @@ class RollingStone {
     var player5 : Hand
     var player6 : Hand
     
+    var firstP : Hand
+    var secondP : Hand
+    var thirdP : Hand
+    var fourthP : Hand
+    var fithP : Hand
+    var sixthP : Hand
+
     //creating the 6 players of user input
 //    var firstP : Hand
 //    var secondP : Hand
@@ -71,12 +78,24 @@ class RollingStone {
         self.interactiveMode = interactiveMode
         
         //Initialize players
-        player1 = Hand(description: "none")
-        player2 = Hand(description: "none")
-        player3 = Hand(description: "none")
-        player4 = Hand(description: "none")
-        player5 = Hand(description: "none")
-        player6 = Hand(description: "none")
+        firstP = Hand(description: "none")
+        secondP = Hand(description: "none")
+        thirdP = Hand(description: "none")
+        fourthP = Hand(description: "none")
+        fithP = Hand(description: "none")
+        sixthP = Hand(description: "none")
+        
+        //default start
+        player1 = firstP
+        player2 = secondP
+        player3 = thirdP
+        player4 = fourthP
+        player5 = fithP
+        player6 = sixthP
+        
+        dealer = player4
+        playerAtTurn = player1
+        nextPlayer = player2
         
         //difficulties related to this code, players = [player1, player2, player3, player4, player5, player6]: how to determine the order? I (Jeewoo) thought it would be good idea for making the players array that keep tracts of whose turn it is. For example, playerOfTurn: players[0], nextPlayerOfTurn: players[1]. I expected the values of array to point same memory location as other players since instances of classes are reference types. However, it turns out as those hands(players) are stored in array, it creates copy of those players that it does not point same memory location anymore. I assume it's because collections in swift are value types.
 
@@ -103,12 +122,12 @@ class RollingStone {
         
         if possibleNumber == 4 {
             print("Please Enter the name of four players you want to play with")
-            player1 = Hand(description: readLine()!)
-            player2 = Hand(description: readLine()!)
-            player3 = Hand(description: readLine()!)
-            player4 = Hand(description: readLine()!)
-            player5 = Hand(description: "none")
-            player6 = Hand(description: "none")
+            firstP = Hand(description: readLine()!)
+            secondP = Hand(description: readLine()!)
+            thirdP = Hand(description: readLine()!)
+            fourthP = Hand(description: readLine()!)
+            
+            starterForFourPlayer()
             
             //remove 2-6 from deck
            for i in 0...deck.cards.count - 1 {
@@ -135,16 +154,18 @@ class RollingStone {
 //            players.removeLast()
 //            players.removeLast()
             
+            
+            
         }
             
         else if possibleNumber == 5 {
             print("Please Enter the name of five players you want to play with")
-            player1 = Hand(description: readLine()!)
-            player2 = Hand(description: readLine()!)
-            player3 = Hand(description: readLine()!)
-            player4 = Hand(description: readLine()!)
-            player5 = Hand(description: readLine()!)
-            player6 = Hand(description: "none")
+            firstP = Hand(description: readLine()!)
+            secondP = Hand(description: readLine()!)
+            thirdP = Hand(description: readLine()!)
+            fourthP = Hand(description: readLine()!)
+            fithP = Hand(description: readLine()!)
+
             
             
             //add cards from 2-5 from deck
@@ -176,12 +197,12 @@ class RollingStone {
         }
         else if possibleNumber == 6 {
             print("Please Enter the name of six players you want to play with")
-            player1 = Hand(description: readLine()!)
-            player2 = Hand(description: readLine()!)
-            player3 = Hand(description: readLine()!)
-            player4 = Hand(description: readLine()!)
-            player5 = Hand(description: readLine()!)
-            player6 = Hand(description: readLine()!)
+            firstP = Hand(description: readLine()!)
+            secondP = Hand(description: readLine()!)
+            thirdP = Hand(description: readLine()!)
+            fourthP = Hand(description: readLine()!)
+            fithP = Hand(description: readLine()!)
+            sixthP = Hand(description: readLine()!)
             
             //remove 2-4 form deck
            for i in 0...deck.cards.count - 1 {
@@ -213,22 +234,9 @@ class RollingStone {
         }else{
         print("restart and type number between 4-6")
         }
-        
-        //starting with 4 players is default
-        dealer = player3
-        playerAtTurn = player4
-        nextPlayer = player1
-        
-        if possibleNumber == 5 {
-            dealer = player4
-            playerAtTurn = player5
-            nextPlayer = player1
-        } else if possibleNumber == 6 {
-            dealer = player5
-            playerAtTurn = player6
-            nextPlayer = player1
-        }
-        
+        dealer = player4
+        playerAtTurn = player1
+        nextPlayer = player2
         middle.cards.insert(playerAtTurn.cards[0], at: 0)
         playerAtTurn.cards.remove(at: 0)
         start(number: possibleNumber)
@@ -364,7 +372,53 @@ class RollingStone {
         describeCards(in: thePlayer)
         
     }
-    
+    func starterForFourPlayer() {
+        var varFirstCard = deck.cards[Int.random(in: 0..<deck.cards.count)].rank.rawValue
+        var varSecondCard = deck.cards[Int.random(in: 0..<deck.cards.count)].rank.rawValue
+        var varThirdCard = deck.cards[Int.random(in: 0..<deck.cards.count)].rank.rawValue
+        var varFourthCard = deck.cards[Int.random(in: 0..<deck.cards.count)].rank.rawValue
+        
+        let cardsArray = [varFirstCard, varSecondCard, varThirdCard, varFourthCard]
+        
+        while true{
+            guard let maxValue = cardsArray.max(), let theIndex = cardsArray.firstIndex(of: maxValue) else {
+                varFirstCard = deck.cards[Int.random(in: 0..<deck.cards.count)].rank.rawValue
+                varSecondCard = deck.cards[Int.random(in: 0..<deck.cards.count)].rank.rawValue
+                varThirdCard = deck.cards[Int.random(in: 0..<deck.cards.count)].rank.rawValue
+                varFourthCard = deck.cards[Int.random(in: 0..<deck.cards.count)].rank.rawValue
+                continue
+            }
+ 
+             if theIndex == 0 {
+                player1 = firstP
+                player2 = secondP
+                player3 = thirdP
+                player4 = fourthP
+                print("\(firstP.description) starts")
+             } else if theIndex ==  1{
+                player1 = secondP
+                player2 = thirdP
+                player3 = fourthP
+                player4 = firstP
+                print("\(secondP.description) starts")
+            }
+            else if theIndex == 2 {
+                player1 = thirdP
+                player2 = fourthP
+                player3 = firstP
+                player4 = secondP
+                print("\(thirdP.description) starts")
+            }
+            else if theIndex == 3 {
+                player1 = fourthP
+                player2 = firstP
+                player3 = secondP
+                player4 = thirdP
+                print("\(fourthP.description) starts")
+            }
+            break
+        }
+    }
     func findCard(thePlayer: Hand, theCard: Card) {
         checkWin(who: thePlayer)
         for i in 0...thePlayer.cards.count - 1 {

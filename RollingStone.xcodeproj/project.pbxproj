@@ -53,6 +53,7 @@
 			children = (
 				9DE23CBC2419A0A9001106D6 /* RollingStone */,
 				9DE23CBB2419A0A9001106D6 /* Products */,
+				9DE23CC52419A270001106D6 /* Deck.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -69,7 +70,6 @@
 			children = (
 				9DE23CBD2419A0A9001106D6 /* main.swift */,
 				9DE23CC42419A270001106D6 /* Card.swift */,
-				9DE23CC52419A270001106D6 /* Deck.swift */,
 				9DE23CC62419A270001106D6 /* Hand.swift */,
 				9DE23CC72419A271001106D6 /* Rank.swift */,
 				9DE23CC82419A271001106D6 /* Suit.swift */,
