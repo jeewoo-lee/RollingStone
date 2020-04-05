@@ -166,7 +166,7 @@ class RollingStone {
             fourthP = Hand(description: readLine()!)
             fithP = Hand(description: readLine()!)
 
-            
+            starterForFivePlayer()
             
             //add cards from 2-5 from deck
             for i in 0...deck.cards.count - 1 {
@@ -203,6 +203,8 @@ class RollingStone {
             fourthP = Hand(description: readLine()!)
             fithP = Hand(description: readLine()!)
             sixthP = Hand(description: readLine()!)
+            
+            starterForSixPlayer()
             
             //remove 2-4 form deck
            for i in 0...deck.cards.count - 1 {
@@ -419,6 +421,149 @@ class RollingStone {
             break
         }
     }
+    
+func starterForFivePlayer() {
+    var varFirstCard = deck.cards[Int.random(in: 0..<deck.cards.count)].rank.rawValue
+    var varSecondCard = deck.cards[Int.random(in: 0..<deck.cards.count)].rank.rawValue
+    var varThirdCard = deck.cards[Int.random(in: 0..<deck.cards.count)].rank.rawValue
+    var varFourthCard = deck.cards[Int.random(in: 0..<deck.cards.count)].rank.rawValue
+    var varFithCard = deck.cards[Int.random(in: 0..<deck.cards.count)].rank.rawValue
+           
+        let cardsArray = [varFirstCard, varSecondCard, varThirdCard, varFourthCard, varFithCard]
+           
+        while true{
+            guard let maxValue = cardsArray.max(), let theIndex = cardsArray.firstIndex(of: maxValue) else {
+                varFirstCard = deck.cards[Int.random(in: 0..<deck.cards.count)].rank.rawValue
+                varSecondCard = deck.cards[Int.random(in: 0..<deck.cards.count)].rank.rawValue
+                varThirdCard = deck.cards[Int.random(in: 0..<deck.cards.count)].rank.rawValue
+                varFourthCard = deck.cards[Int.random(in: 0..<deck.cards.count)].rank.rawValue
+                varFithCard = deck.cards[Int.random(in: 0..<deck.cards.count)].rank.rawValue
+                   continue
+               }
+    
+            if theIndex == 0 {
+                player1 = firstP
+                player2 = secondP
+                player3 = thirdP
+                player4 = fourthP
+                player5 = fithP
+                
+                print("\(firstP.description) starts")
+            } else if theIndex ==  1{
+                player1 = secondP
+                player2 = thirdP
+                player3 = fourthP
+                player4 = fithP
+                player5 = firstP
+                print("\(secondP.description) starts")
+            }
+            else if theIndex == 2 {
+                player1 = thirdP
+                player2 = fourthP
+                player3 = fithP
+                player4 = firstP
+                player5 = secondP
+                print("\(thirdP.description) starts")
+            }
+            else if theIndex == 3 {
+                player1 = fourthP
+                player2 = fithP
+                player3 = firstP
+                player4 = secondP
+                player5 = thirdP
+                print("\(fourthP.description) starts")
+            }
+            else if theIndex == 4 {
+                player1 = fithP
+                player2 = firstP
+                player3 = secondP
+                player4 = thirdP
+                player5 = fourthP
+                print("\(fithP.description) starts")
+            }
+            break
+        }
+    }
+    
+    func starterForSixPlayer() {
+    var varFirstCard = deck.cards[Int.random(in: 0..<deck.cards.count)].rank.rawValue
+    var varSecondCard = deck.cards[Int.random(in: 0..<deck.cards.count)].rank.rawValue
+    var varThirdCard = deck.cards[Int.random(in: 0..<deck.cards.count)].rank.rawValue
+    var varFourthCard = deck.cards[Int.random(in: 0..<deck.cards.count)].rank.rawValue
+    var varFithCard = deck.cards[Int.random(in: 0..<deck.cards.count)].rank.rawValue
+    var varSixthCard = deck.cards[Int.random(in: 0..<deck.cards.count)].rank.rawValue
+           
+        let cardsArray = [varFirstCard, varSecondCard, varThirdCard, varFourthCard, varFithCard, varSixthCard]
+           
+        while true{
+            guard let maxValue = cardsArray.max(), let theIndex = cardsArray.firstIndex(of: maxValue) else {
+                varFirstCard = deck.cards[Int.random(in: 0..<deck.cards.count)].rank.rawValue
+                varSecondCard = deck.cards[Int.random(in: 0..<deck.cards.count)].rank.rawValue
+                varThirdCard = deck.cards[Int.random(in: 0..<deck.cards.count)].rank.rawValue
+                varFourthCard = deck.cards[Int.random(in: 0..<deck.cards.count)].rank.rawValue
+                varFithCard = deck.cards[Int.random(in: 0..<deck.cards.count)].rank.rawValue
+                varSixthCard = deck.cards[Int.random(in: 0..<deck.cards.count)].rank.rawValue
+                   continue
+               }
+    
+            if theIndex == 0 {
+                player1 = firstP
+                player2 = secondP
+                player3 = thirdP
+                player4 = fourthP
+                player5 = fithP
+                player6 = sixthP
+                print("\(firstP.description) starts")
+                
+            } else if theIndex ==  1{
+                player1 = secondP
+                player2 = thirdP
+                player3 = fourthP
+                player4 = fithP
+                player5 = sixthP
+                player6 = firstP
+                print("\(secondP.description) starts")
+            }
+            else if theIndex == 2 {
+                player1 = thirdP
+                player2 = fourthP
+                player3 = fithP
+                player4 = sixthP
+                player5 = firstP
+                player6 = secondP
+                print("\(thirdP.description) starts")
+            }
+            else if theIndex == 3 {
+                player1 = fourthP
+                player2 = fithP
+                player3 = sixthP
+                player4 = firstP
+                player5 = secondP
+                player6 = thirdP
+                print("\(fourthP.description) starts")
+            }
+            else if theIndex == 4 {
+                player1 = fithP
+                player2 = sixthP
+                player3 = firstP
+                player4 = secondP
+                player5 = thirdP
+                player6 = fourthP
+                print("\(fithP.description) starts")
+            }
+            else if theIndex == 5 {
+                player1 = sixthP
+                player2 = firstP
+                player3 = secondP
+                player4 = thirdP
+                player5 = fourthP
+                player6 = fithP
+                print("\(sixthP.description) starts")
+            }
+            break
+        }
+    }
+    
     func findCard(thePlayer: Hand, theCard: Card) {
         checkWin(who: thePlayer)
         for i in 0...thePlayer.cards.count - 1 {
