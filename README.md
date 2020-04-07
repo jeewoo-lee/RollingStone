@@ -3,7 +3,8 @@ AP Computer Science Principle Create Task.
 Created by Jeewoo Lee and Nick Anstoetz.
 
 # What is "Rolling Stone"
-"This card game for kids can be a lot of fun but also very frustrating: just when you are about to win, you can find yourself right back at square one!" - https://www.activityvillage.co.uk/ -
+"This card game for kids can be a lot of fun but also very frustrating: just when you are about to win, you can find yourself right back at square one!" 
+It's a simple card game, and the reason why it is programmed is to simulate more rounds than any human can possibly do (cuz it's tiring).
 
 # Rules
 Number of Players:
